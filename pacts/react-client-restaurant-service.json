@@ -1,0 +1,158 @@
+{
+  "consumer": {
+    "name": "react-client"
+  },
+  "interactions": [
+    {
+      "description": "un pedido para crear un item",
+      "providerStates": [
+        {
+          "name": "crear item"
+        }
+      ],
+      "request": {
+        "body": {
+          "codigo": "123",
+          "nombre": "item de prueba"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "method": "POST",
+        "path": "/api/Item"
+      },
+      "response": {
+        "body": "6cc5f70e-ba09-4df7-a757-7adfe2d4a360",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "un pedido para crear un transaccion",
+      "providerStates": [
+        {
+          "name": "crear transaccion"
+        }
+      ],
+      "request": {
+        "body": {
+          "crearYConfirmar": true,
+          "items": [
+            {
+              "cantidad": 20,
+              "costoUnitario": 10,
+              "id": "21fcfd5b-91c0-4cf3-a257-f4b93c1ef623"
+            }
+          ],
+          "tipo": 0
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "method": "POST",
+        "path": "/api/Transaccion"
+      },
+      "response": {
+        "body": "\"6cc5f70e-ba09-4df7-a757-7adfe2d4a360\"",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "un texto de busqueda",
+      "providerStates": [
+        {
+          "name": "realizar busqueda de items"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/api/Item",
+        "query": {
+          "searchTerm": [
+            "asd"
+          ]
+        }
+      },
+      "response": {
+        "body": [
+          {
+            "codigo": "asdasd",
+            "itemId": "22ce4c2f-510f-4f9b-a6c1-40869a1181de",
+            "nombre": "asdasd",
+            "stock": 0
+          },
+          {
+            "codigo": "dsa",
+            "itemId": "21fcfd5b-91c0-4cf3-a257-f4b93c1ef623",
+            "nombre": "asd",
+            "stock": 0
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "12.1.0"
+    },
+    "pactRust": {
+      "ffi": "0.4.7",
+      "models": "1.1.9"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "restaurant-service"
+  }
+}

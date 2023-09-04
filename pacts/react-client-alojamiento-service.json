@@ -1,0 +1,224 @@
+{
+  "consumer": {
+    "name": "react-client"
+  },
+  "interactions": [
+    {
+      "description": "un accion para crear un ciudad",
+      "providerStates": [
+        {
+          "name": "crear ciudad"
+        }
+      ],
+      "request": {
+        "body": {
+          "nombre": "San Jose",
+          "paisId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "method": "POST",
+        "path": "/api/Ciudad"
+      },
+      "response": {
+        "body": "6cc5f70e-ba09-4df7-a757-7adfe2d4a360",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "un accion para crear un pais",
+      "providerStates": [
+        {
+          "name": "crear pais"
+        }
+      ],
+      "request": {
+        "body": {
+          "codigoPais": "PB",
+          "nombre": "Pais de prueba"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "method": "POST",
+        "path": "/api/Pais"
+      },
+      "response": {
+        "body": "6cc5f70e-ba09-4df7-a757-7adfe2d4a360",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "un accion para crear una propiedad",
+      "providerStates": [
+        {
+          "name": "crear propiedad"
+        }
+      ],
+      "request": {
+        "body": {
+          "camas": 5,
+          "descripcion": "Esta es una propiedad de prueba",
+          "habitaciones": 5,
+          "personas": 10,
+          "precio": 200,
+          "tipoPropiedad": 0,
+          "titulo": "Titulo propiedad"
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "method": "POST",
+        "path": "/api/Propiedad/CrearPropiedad"
+      },
+      "response": {
+        "body": "6cc5f70e-ba09-4df7-a757-7adfe2d4a360",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "un texto de busqueda",
+      "providerStates": [
+        {
+          "name": "realizar busqueda de paises"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/api/Propiedad/BuscarPropiendadXCiudad",
+        "query": {
+          "ciudadTerm": [
+            "Santa Cruz"
+          ]
+        }
+      },
+      "response": {
+        "body": [
+          {
+            "camas": 5,
+            "descripcion": "Descripcion 3",
+            "fotos": [
+              {
+                "url": "https://hips.hearstapps.com/hmg-prod/images/one-bed-cottage-for-sale-bath-1674727199.jpg"
+              }
+            ],
+            "habitaciones": 5,
+            "personas": 10,
+            "precio": 20,
+            "titulo": "Propiedad 3"
+          },
+          {
+            "camas": 5,
+            "descripcion": "Descripcion 1",
+            "fotos": [
+              {
+                "url": "https://images.adsttc.com/media/images/5771/cc2a/e58e/ce0a/2700/007f/large_jpg/CASAU_CROQUIS_03.jpg?1467075583"
+              }
+            ],
+            "habitaciones": 5,
+            "personas": 10,
+            "precio": 200,
+            "titulo": "Propiedad 1"
+          },
+          {
+            "camas": 5,
+            "descripcion": "Descripcion 3",
+            "fotos": [
+              {
+                "url": "https://hips.hearstapps.com/hmg-prod/images/one-bed-cottage-for-sale-bath-1674727199.jpg"
+              }
+            ],
+            "habitaciones": 5,
+            "personas": 10,
+            "precio": 20,
+            "titulo": "Propiedad 3"
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "12.1.0"
+    },
+    "pactRust": {
+      "ffi": "0.4.7",
+      "models": "1.1.9"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "alojamiento-service"
+  }
+}
