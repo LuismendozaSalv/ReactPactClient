@@ -8,7 +8,7 @@ function App() {
   const [nombre, setNombre] = useState('');
   const crearPaisClick = () => {
     console.log('Crear item');
-    (new PaisService('https://localhost:7062')).crearPais(codigo, nombre).then((id) => {
+    (new PaisService('http://localhost:5196')).crearPais(codigo, nombre).then((id) => {
       alert('Item creado con id: ' + id);
     }).catch((error) => {
       console.log(error);

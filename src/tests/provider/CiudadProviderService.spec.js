@@ -6,11 +6,11 @@ let port;
 let opts;
 describe("Pact Verification", () => {
     before(async () => {
-        port = 7062;
+        port = 5196;
 
         opts = {
             provider: "alojamiento-service",
-            providerBaseUrl: `https://localhost:${port}`,
+            providerBaseUrl: `http://localhost:${port}`,
             logLevel: "info",
             pactUrls: [pactFile]
 

@@ -50,7 +50,7 @@ describe('El API de Paises', () => {
         it('retorna una lista de paises encontrados', () => {
             //Arrange
             provider.given('realizar busqueda de paises')
-                .uponReceiving('un texto de busqueda')
+                .uponReceiving('un pais de busqueda')
                 .withRequest({
                     method: 'GET',
                     path: '/api/Pais',

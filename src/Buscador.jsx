@@ -4,7 +4,7 @@ import { PaisService } from './services/PaisService';
 const Buscador = () => {
     const [texto, setTexto] = useState('');
     const clickBuscar = () => {
-        (new PaisService('https://localhost:7062')).buscarPorNombre(texto)
+        (new PaisService('http://localhost:5196')).buscarPorNombre(texto)
             .then((lista) => {
                 alert('Se encontraron ' + lista.length + ' items');
                 console.log(lista);

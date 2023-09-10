@@ -47,7 +47,7 @@ export const crearTransaccionRequestBody = {
 export const textoBusquedaCiudad = 'Cochabam';
 export const crearCiudadRequestBody = {
     nombre: "San Jose",
-    paisId: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+    paisId: "6610ff58-84b8-4f1a-a322-5791162c02b5"
 };
 export const crearCiudadResponse = '"6cc5f70e-ba09-4df7-a757-7adfe2d4a360"';
 export const responseCiudadSearch = [
@@ -110,3 +110,31 @@ export const responsePropiedadSearch = [
       ]
     }
   ];
+
+export const crearComodidadRequestBody = {
+   nombre: "Televisión por Cable",
+  descripcion: "Ofrecer una variedad de canales para el entretenimiento de los huéspedes"
+};
+export const crearComodidadResponse = '"6cc5f70e-ba09-4df7-a757-7adfe2d4a360"';
+
+export const agregarDireccionRequestBody = {
+  propiedadId : "6189d331-f0ca-44d0-bff5-5df771e62793",
+  calle : "Calle nueva",
+  avenida : "Avenida nueva",
+  referencia : "Porton cafe",
+  latitud : -17.793288643202846,
+  longitud : -63.169714912465764,
+  ciudadId : "b6e7d66c-d7f9-4af9-9ec0-02f8ccd18654"
+}
+
+export const agregarFotosRequestBody = {
+  propiedadId : "6189d331-f0ca-44d0-bff5-5df771e62793",
+  fotos : [
+    {
+      url : "https://cdn.pixabay.com/photo/2014/12/22/10/04/lions-577104_1280.jpg"
+    },
+    {
+      url : "https://i.pinimg.com/564x/46/4b/42/464b42dc572c35a579d4c8b8e7c99dc2.jpg"
+    }
+  ]
+}

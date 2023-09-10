@@ -2,7 +2,8 @@ import { PactV3, MatchersV3 } from '@pact-foundation/pact';
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import { PropiedadService } from '../../services/PropiedadService.js';
-import { crearPropiedadRequestBody, crearPropiedadResponse, responsePropiedadSearch, textoBusquedaPropiedad } from '../PactResponses.js';
+import { crearPropiedadRequestBody, crearPropiedadResponse, responsePropiedadSearch, textoBusquedaPropiedad, agregarDireccionRequestBody, 
+    agregarFotosRequestBody } from '../PactResponses.js';
 const { like } = MatchersV3;
 describe('El API de Propiedades', () => {
 
@@ -49,11 +50,11 @@ describe('El API de Propiedades', () => {
     });
 
 
-    describe('buscar paises', () => {
-        it('retorna una lista de paises encontrados', () => {
+    describe('buscar propiedades por ciudad', () => {
+        it('retorna una lista de propiedades encontradas', () => {
             //Arrange
-            provider.given('realizar busqueda de paises')
-                .uponReceiving('un texto de busqueda')
+            provider.given('realizar busqueda de propiedades')
+                .uponReceiving('una ciudad para busqueda de propiedades')
                 .withRequest({
                     method: 'GET',
                     path: '/api/Propiedad/BuscarPropiendadXCiudad',
@@ -82,6 +83,76 @@ describe('El API de Propiedades', () => {
                     expect(values).to.include('Propiedad 3');                    
                 });
             });
+        });
+    });
+
+    describe('agregar direccion', () => {
+        it('retorna un id de propiedad enviada', () => {
+            //Arrange
+            provider.given('agregar direccion')
+                .uponReceiving('una accion para agregar una direccion a una propiedad')
+                .withRequest({
+                    method: 'POST',
+                    path: '/api/Propiedad/AgregarDireccion',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    body: agregarDireccionRequestBody
+                }).willRespondWith({
+                    status: 200,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: like(crearPropiedadResponse)
+                });
+            return provider.executeTest(async mockServer => {
+                // Act
+                propiedadService = new PropiedadService(mockServer.url);
+                return propiedadService.agregarDireccion(agregarDireccionRequestBody.propiedadId, agregarDireccionRequestBody.calle, 
+                    agregarDireccionRequestBody.avenida, agregarDireccionRequestBody.referencia, agregarDireccionRequestBody.latitud,
+                    agregarDireccionRequestBody.longitud, agregarDireccionRequestBody.ciudadId
+                ).then((response) => {
+                    //Assert
+                    expect(response).to.be.not.null;
+                    expect(response).to.be.a.string;
+                    expect(response).equal(crearPropiedadResponse);
+                });
+            });
+
+        });
+    });
+
+    describe('agregar fotos', () => {
+        it('retorna un id de propiedad enviada', () => {
+            //Arrange
+            provider.given('agregar fotos')
+                .uponReceiving('una accion para agregar una fotos a una propiedad')
+                .withRequest({
+                    method: 'POST',
+                    path: '/api/Propiedad/AgregarFotos',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    body: agregarFotosRequestBody
+                }).willRespondWith({
+                    status: 200,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: like(crearPropiedadResponse)
+                });
+            return provider.executeTest(async mockServer => {
+                // Act
+                propiedadService = new PropiedadService(mockServer.url);
+                return propiedadService.agregarFotos(agregarFotosRequestBody.propiedadId, agregarFotosRequestBody.fotos
+                ).then((response) => {
+                    //Assert
+                    expect(response).to.be.not.null;
+                    expect(response).to.be.a.string;
+                    expect(response).equal(crearPropiedadResponse);
+                });
+            });
+
         });
     });
 });

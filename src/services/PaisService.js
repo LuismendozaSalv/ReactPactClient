@@ -5,7 +5,7 @@ export class PaisService {
     constructor(endpoint) {
         this.endpoint = endpoint;
         if (!endpoint) {
-            endpoint = 'https://localhost:7062';
+            endpoint = 'http://localhost:5196';
         }
     }
     crearPais = (nombre, codigoPais) => {

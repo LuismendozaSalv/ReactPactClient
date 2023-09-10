@@ -46,11 +46,11 @@ describe('El API de Ciudades', () => {
     });
 
 
-    describe('buscar paises', () => {
-        it('retorna una lista de paises encontrados', () => {
+    describe('buscar ciudades', () => {
+        it('retorna una lista de ciudades encontradas', () => {
             //Arrange
             provider.given('realizar busqueda de paises')
-                .uponReceiving('un texto de busqueda')
+                .uponReceiving('una ciudad de busqueda')
                 .withRequest({
                     method: 'GET',
                     path: '/api/Ciudad',
