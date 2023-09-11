@@ -131,10 +131,30 @@ export const agregarFotosRequestBody = {
   propiedadId : "6189d331-f0ca-44d0-bff5-5df771e62793",
   fotos : [
     {
-      url : "https://cdn.pixabay.com/photo/2014/12/22/10/04/lions-577104_1280.jpg"
+      url : "https://pakarytravel.com/wp-content/uploads/2021/12/las_lagunas_restaurante-1.jpg"
     },
     {
-      url : "https://i.pinimg.com/564x/46/4b/42/464b42dc572c35a579d4c8b8e7c99dc2.jpg"
+      url : "https://volemos.nyc3.cdn.digitaloceanspaces.com/blog/wp-content/uploads/2022/04/06101114/hospedaje-salta-capital.jpeg"
     }
+  ]
+}
+export const propiedadResponse = '"6189d331-f0ca-44d0-bff5-5df771e62793"';
+export const agregarReglasRequestBody = {
+  propiedadId : "6189d331-f0ca-44d0-bff5-5df771e62793",
+  reglas : [
+    {
+      "value": "Prohibido fumar dentro"
+    },
+    {
+      "value": "No se permite mascotas"
+    }
+  ]
+}
+
+export const agregarComodidadesRequestBody = {
+  propiedadId : "6189d331-f0ca-44d0-bff5-5df771e62793",
+  comodidades : [
+    "76d74fd1-bb36-4b62-a28f-0422dc16c5e4",
+    "3c17a884-ce5c-4ab4-956b-f162e702c147"
   ]
 }

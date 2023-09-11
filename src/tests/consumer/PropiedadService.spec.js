@@ -3,7 +3,10 @@ import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import { PropiedadService } from '../../services/PropiedadService.js';
 import { crearPropiedadRequestBody, crearPropiedadResponse, responsePropiedadSearch, textoBusquedaPropiedad, agregarDireccionRequestBody, 
-    agregarFotosRequestBody } from '../PactResponses.js';
+    agregarFotosRequestBody, 
+    propiedadResponse,
+    agregarReglasRequestBody,
+    agregarComodidadesRequestBody} from '../PactResponses.js';
 const { like } = MatchersV3;
 describe('El API de Propiedades', () => {
 
@@ -150,6 +153,74 @@ describe('El API de Propiedades', () => {
                     expect(response).to.be.not.null;
                     expect(response).to.be.a.string;
                     expect(response).equal(crearPropiedadResponse);
+                });
+            });
+
+        });
+    });
+
+    describe('agregar reglas', () => {
+        it('retorna un id de propiedad enviada', () => {
+            //Arrange
+            provider.given('agregar reglas')
+                .uponReceiving('una accion para agregar reglas a una propiedad')
+                .withRequest({
+                    method: 'POST',
+                    path: '/api/Propiedad/AgregarReglas',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    body: agregarReglasRequestBody
+                }).willRespondWith({
+                    status: 200,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: like(propiedadResponse)
+                });
+            return provider.executeTest(async mockServer => {
+                // Act
+                propiedadService = new PropiedadService(mockServer.url);
+                return propiedadService.agregarReglas(agregarReglasRequestBody.propiedadId, agregarReglasRequestBody.reglas
+                ).then((response) => {
+                    //Assert
+                    expect(response).to.be.not.null;
+                    expect(response).to.be.a.string;
+                    expect(response).equal(propiedadResponse);
+                });
+            });
+
+        });
+    });
+
+    describe('agregar comodidades', () => {
+        it('retorna un id de propiedad enviada', () => {
+            //Arrange
+            provider.given('agregar comodidades')
+                .uponReceiving('una accion para agregar comodidades a una propiedad')
+                .withRequest({
+                    method: 'POST',
+                    path: '/api/Propiedad/AgregarComodidades',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    body: agregarComodidadesRequestBody
+                }).willRespondWith({
+                    status: 200,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: like(propiedadResponse)
+                });
+            return provider.executeTest(async mockServer => {
+                // Act
+                propiedadService = new PropiedadService(mockServer.url);
+                return propiedadService.agregarComodidades(agregarComodidadesRequestBody.propiedadId, agregarComodidadesRequestBody.comodidades
+                ).then((response) => {
+                    //Assert
+                    expect(response).to.be.not.null;
+                    expect(response).to.be.a.string;
+                    expect(response).equal(propiedadResponse);
                 });
             });
 

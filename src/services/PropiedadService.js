@@ -91,4 +91,42 @@ export class PropiedadService {
             });
         });
     }
+
+    agregarReglas = (propiedadId, reglas) => {
+        console.log('endpoint: ', this.endpoint + '/api/Propiedad/AgregarReglas');
+        return new Promise((resolve, reject) => {
+            axios.post(this.endpoint + '/api/Propiedad/AgregarReglas', {
+                propiedadId, 
+                reglas
+            },{
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then((response) => {
+                resolve(response.data);
+            }).catch((error) => {
+                console.log('error: ' + error);
+                reject(error);
+            });
+        });
+    }
+
+    agregarComodidades = (propiedadId, comodidades) => {
+        console.log('endpoint: ', this.endpoint + '/api/Propiedad/AgregarComodidades');
+        return new Promise((resolve, reject) => {
+            axios.post(this.endpoint + '/api/Propiedad/AgregarComodidades', {
+                propiedadId, 
+                comodidades
+            },{
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then((response) => {
+                resolve(response.data);
+            }).catch((error) => {
+                console.log('error: ' + error);
+                reject(error);
+            });
+        });
+    }
 }
